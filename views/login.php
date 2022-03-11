@@ -1,8 +1,6 @@
 <?php
 
 include '../views/register.php';
-include '../views/forgot_password.php';
-
 
 ?>
 
@@ -30,12 +28,11 @@ include '../views/forgot_password.php';
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Include JS File -->
-    <!--<script src="../js/homeUsers.class.js?v<?php //echo filemtime('../js/homeUsers.class.js'); ?>"></script> -->
+    <!-- <script src="../js/homeUsers.class.js?v<?php  // echo filemtime('../js/homeUsers.class.js'); ?>"></script> -->
     <script type="text/javascript">
 
         $( window ).on( "load", function() {
             $("login-box").show();
-            $("#forgot-box").hide();
             $("#register-box").hide();
             });
 
@@ -43,28 +40,21 @@ include '../views/forgot_password.php';
 
             $("#register-btn").click(function(){
                 $("#login-box").hide();
-                $("#forgot-box").hide();
                 $("#register-box").show();
             });
 
             $("#haveacc-link").click(function(){
                 $("#login-box").show();
-                $("#forgot-box").hide();
-                $("#register-box").hide();
-            });
-
-            $("#forgot-link").click(function(){
-                $("#forgot-box").show();
-                $("#login-box").hide();
                 $("#register-box").hide();
             });
 
             $("#remember-link").click(function(){
                 $("#login-box").show();
-                $("#forgot-box").hide();
                 $("#register-box").hide();
             });
         });
+
+        const login = new Login();
 
     </script>
 
@@ -98,16 +88,6 @@ include '../views/forgot_password.php';
                                     </span>
                                 </div>
                                 <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="Type your password..." required>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox float-left">
-                                    <input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
-                                    <label for="customCheck" class="custom-control-label">Remember Me</label>
-                                </div>
-                                <div class="forgot float-right">
-                                    <a href="#" id="forgot-link">Forgot Password?</a>
-                                </div>
-                                <div class="clearfix"></div>
                             </div>
                             <div class="form-group col text-center">
                                 <!-- Buttons -->

@@ -1,7 +1,7 @@
 <?php
 
 class Database {
-    public $dsn = "mysql:host=localhost;dbname=php_oop";
+    public $dsn = "mysql:host=localhost;dbname=safefarm";
     public $user = "root";
     public $pass = "";
     public $conn;
@@ -15,6 +15,5 @@ class Database {
         }
     }
 }
-
 
 ?>

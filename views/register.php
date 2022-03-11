@@ -16,7 +16,15 @@
                                 <i class="fas fa-user-alt fa-lg"></i> <!-- User Icon -->
                             </span>
                         </div>
-                        <input type="name" name="name" id="name" class="form-control rounded-0" placeholder="Type your First & Last Name..." required>
+                        <input type="name" name="fname" id="fname" class="form-control rounded-0" placeholder="Type your First Name..." required>
+                    </div>
+                    <div class="input-group input-group-lg form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text rounded-0">
+                                <i class="fas fa-user-alt fa-lg"></i> <!-- User Icon -->
+                            </span>
+                        </div>
+                        <input type="name" name="lname" id="lname" class="form-control rounded-0" placeholder="Type your Last Name..." required>
                     </div>
                 <!-- Email Input -->
                     <div class="input-group input-group-lg form-group">
@@ -40,7 +48,7 @@
                     <div class="input-group input-group-lg form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text rounded-0">
-                                <i class="fas fa-key fa-lg"></i> <!-- Password Icon -->
+                                <i class="fas fa-check fa-lg"></i> <!-- Password Icon -->
                             </span>
                         </div>
                         <input type="password" name="password" id="cpassword" class="form-control rounded-0" placeholder="Confirm password..." required minlength="10">
