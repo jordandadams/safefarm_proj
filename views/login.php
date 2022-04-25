@@ -1,6 +1,6 @@
 <?php
 
-include '../views/register.php';
+//include '../views/register.php';
 
 ?>
 
@@ -31,14 +31,14 @@ include '../views/register.php';
     <!-- <script src="../js/homeUsers.class.js?v<?php  // echo filemtime('../js/homeUsers.class.js'); ?>"></script> -->
     <script type="text/javascript">
 
-        $( window ).on( "load", function() {
+        /*$( window ).on( "load", function() {
             $("login-box").show();
             $("#register-box").hide();
-            });
+            });*/
 
         $(document).ready(function(){
 
-            $("#register-btn").click(function(){
+            /*$("#register-btn").click(function(){
                 $("#login-box").hide();
                 $("#register-box").show();
             });
@@ -51,7 +51,12 @@ include '../views/register.php';
             $("#remember-link").click(function(){
                 $("#login-box").show();
                 $("#register-box").hide();
+            });*/
+
+            $("#register-btn").click(function(){
+                window.location.href='register.php';
             });
+
         });
 
         const login = new Login();
@@ -104,7 +109,7 @@ include '../views/register.php';
  
 
 
-    <script tpye="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
     <script type="text/javascript">
 </body>

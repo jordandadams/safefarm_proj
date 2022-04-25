@@ -14,6 +14,10 @@ class RegisterMapper {
         $this->dbObject = new Database(); //instantiating Database class from database.php
     }
 
+    private function getQuestionMarks($count) {
+        return join(',', array_fill(0, $count, '?'));
+    }
+
     public function getAllUsers() {
         $users = array();
         $sql = "
@@ -31,10 +35,19 @@ class RegisterMapper {
         return $users;
     }
 
+    public function insertUser(&$values) {
+        $columns = join(',', array_keys($values));
+        $questionMarks = $this->getQuestionMarks(count($values));
+        $params = array_values($values);
+        $sql = "
+            insert into users ({$columns}) values ({$questionMarks})
+        ";
+        $array = $this->dbObject->conn->query($sql, true, $params);
+        $row = $array->fetch(PDO::FETCH_NUM);
+        return $row[0];
+    }
+
 
 }
-
-    $x = new RegisterMapper();
-    print_r($x->getAllUsers());
 
 ?>
