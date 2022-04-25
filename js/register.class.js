@@ -1,47 +1,62 @@
 
 class Register {
 
-    errorMessage() {
-        alert('An unknown error has occured!');
-        location.reload();
+    registerNewUser() {
+        if ($('#register-form')[0].checkValidity()) {
+            $('#register-btn2').val('Please Wait...');
+            if($('#rpassword').val() != $('#cpassword').val()) {
+                $('#passError').text('The passwords do not match!');
+                $('#register-btn2').val('Sign Up');
+            } else {
+                $('#passError').text('');
+                $.ajax({
+                    url: '../controllers/registerPage.class.php',
+                    method: 'POST',
+                    data: $("#register-form").serialize() + '&action=register',
+                    success: function (result) {
+                        $('#register-btn2').val('Sign Up');
+                        if (result === 'register') {
+                            location.reload();
+                        } else {
+                            //$('#regAlert').html(result);
+                            console.log(result);
+                        }
+                    }
+                })
+            }
+        }
     }
 
-    register() {
-        this.errorMessage();
-        var firstName = $('fname').val().trim();
-        var lastName = $('lname').val().trim();
-        var email = $('email').val().trim();
-        var password = $('rpassword').val().trim();
-        if (firstName == "" || lastName == "" || email == "" || password == "") {
-            return;
-        }
-        var self = this;
-        var request = {
-            request: 'register'
-        };
-        request['first_name'] = firstName;
-        request['last_name'] = lastName;
-        request['email'] = email;
-        request['password'] = password;
-        $.ajax({
-            type: "POST",
-            url: "../routes/register.php",
-            data: request,
-            success: function (result) {
-                console.log(result);
-                var result = JSON.parse(result);
-                console.log(result);
-                if (typeof result === 'object' && result !== null) {
-                    if (result == '1') {
-                        location.reload();
+    /*registerNewUser() {
+        var fName = $('#fName').val();
+        var lName = $('#lName').val();
+        var email = $('#email').val();
+        var password = $("#cpassword").val();
+
+        if ($('#register-form')[0].checkValidity()) {
+            $('#register-btn2').val('Please Wait...');
+            if($('#rpassword').val() != $('#cpassword').val()) {
+                $('#passError').text('The passwords do not match!');
+                $('#register-btn2').val('Sign Up');
+            } else {
+                $('#passError').text('');
+                $.ajax({
+                    url: '../controllers/registerPage.class.php',
+                    method: 'POST',
+                    data: {
+                        fName : fName,
+                        lName : lName,
+                        email : email,
+                        password : password
+                    },
+                    success: function (result) {
+                        $('#register-btn2').val('Sign Up');
+                        console.log(result);
                     }
-                    else {
-                        self.errorMessage();
-                    }
-                }
+                })
             }
-        });
-    }
+        }
+    }*/
 
 
 

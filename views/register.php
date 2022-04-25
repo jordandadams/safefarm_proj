@@ -24,8 +24,11 @@
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Include JS File -->
-    <script src="../js/register.class.js?v<?php  echo filemtime('../js/register.class.js'); ?>"></script>
+    <script src="../js/register.class.js?v<?php echo filemtime('../js/register.class.js'); ?>"></script>
     <script type="text/javascript">
+
+        //insert js class
+        const register = new Register();
 
         //jQuery stuff
         $(document).ready(function(){
@@ -35,9 +38,6 @@
             });
 
         });
-
-        //insert js class
-        const register = new Register();
 
     </script>
 
@@ -54,6 +54,7 @@
                     <h1 class="text-center font-weight-bold text-dark">Create an Account</h1>
                     <hr class="my-3">
                     <form action="#" method="post" class="px-3" id="register-form">
+                        <div id="regAlert"></div>
                     <!-- Name Input -->
                         <div class="input-group input-group-lg form-group">
                             <div class="input-group-prepend">
@@ -61,7 +62,7 @@
                                     <i class="fas fa-user-alt fa-lg"></i> <!-- User Icon -->
                                 </span>
                             </div>
-                            <input type="name" name="fname" id="fname" class="form-control rounded-0" placeholder="Type your First Name..." required>
+                            <input type="name" name="fName" id="fName" class="form-control rounded-0" placeholder="Type your First Name..." required>
                         </div>
                         <div class="input-group input-group-lg form-group">
                             <div class="input-group-prepend">
@@ -69,7 +70,7 @@
                                     <i class="fas fa-user-alt fa-lg"></i> <!-- User Icon -->
                                 </span>
                             </div>
-                            <input type="name" name="lname" id="lname" class="form-control rounded-0" placeholder="Type your Last Name..." required>
+                            <input type="name" name="lName" id="lName" class="form-control rounded-0" placeholder="Type your Last Name..." required>
                         </div>
                     <!-- Email Input -->
                         <div class="input-group input-group-lg form-group">
@@ -78,7 +79,7 @@
                                     <i class="far fa-envelope fa-lg"></i> <!-- Envelope Icon -->
                                 </span>
                             </div>
-                            <input type="email" name="email" id="remail" class="form-control rounded-0" placeholder="Type your e-mail..." required>
+                            <input type="email" name="email" id="email" class="form-control rounded-0" placeholder="Type your e-mail..." required>
                         </div>
                         <!-- Password Input -->
                         <div class="input-group input-group-lg form-group">
@@ -87,20 +88,23 @@
                                     <i class="fas fa-key fa-lg"></i> <!-- Password Icon -->
                                 </span>
                             </div>
-                            <input type="password" name="password" id="rpassword" class="form-control rounded-0" placeholder="Type your password..." required minlength="5">
+                            <input type="password" name="rpassword" id="rpassword" class="form-control rounded-0" placeholder="Type your password..." required minlength="5">
                         </div>
                         <!-- Confirm Password Input -->
-                        <!--<div class="input-group input-group-lg form-group">
+                        <div class="input-group input-group-lg form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text rounded-0">
                                     <i class="fas fa-check fa-lg"></i>
                                 </span>
                             </div>
-                            <input type="password" name="password" id="cpassword" class="form-control rounded-0" placeholder="Confirm password..." required minlength="10">
-                        </div> -->
+                            <input type="password" name="cpassword" id="cpassword" class="form-control rounded-0" placeholder="Confirm password..." required minlength="5">
+                        </div>
+                        <div class="form-group">
+                            <div id="passError" class="text-danger font-weight-bold"></div>
+                        </div>
                         <div class="form-group col text-center">
                             <!-- Buttons -->
-                            <input type="submit" value="Create" id="register-btn2" class="btn btn-primary" onClick="register.register();">
+                            <input type="button" value="Sign Up" id="register-btn2" class="btn btn-primary" onClick="register.registerNewUser();">
                         </div>
                         <div class="forgot float-right">
                             <a href="#" id="haveacc-link">Already have an account? Click here to Sign In!</a>

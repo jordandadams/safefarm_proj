@@ -1,33 +1,30 @@
 <?php
 
-require_once dirname(__FILE__) . '../classes/register.php';
+session_start();
+require_once '../classes/register.class.php';
 
-class RegisterPage {
+$registerModel = new Register();
 
-    private $requestArray;
+        if (isset($_POST['action']) && $_POST['action'] == 'register') {
+            $fName = $registerModel->test_input($_POST['fName']);
+            $lName = $registerModel->test_input($_POST['lName']);
+            $email = $registerModel->test_input($_POST['email']);
+            $password = $registerModel->test_input($_POST['rpassword']);
 
-    function __construct($requestArray)
-    {
-        $this->requestArray = $requestArray;
-    }
+            $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    private function register() {
-        $reg = new Register();
-        $reg->setFirstName($this->requestArray['first_name']);
-        $reg->setLastName($this->requestArray['last_name']);
-        $reg->setEmail($this->requestArray['email']);
-        $reg->setPassword($this->requestArray['password']);
-        $result = $reg->create();
-        return $result;
-    }
-
-    public function executeRequest() {
-        if ($this->requestArray['request'] == 'register') {
-            $this->register();
-            return '1';
+            if ($registerModel->userExists($email)) {
+                echo $registerModel->showMessage('warning', 'This e-mail has already been registered!');
+            } else {
+                if ($registerModel->register($fName, $lName, $email, $hash)) {
+                    echo 'register';
+                    $_SESSION['user'] = $email;
+                } else {
+                    echo $registerModel->showMessage('danger', 'Something went wrong! Try again later!');
+                }
+            }
         }
-    }
 
-}
+
 
 ?>
