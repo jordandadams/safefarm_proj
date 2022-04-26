@@ -122,7 +122,7 @@ require_once '../controllers/customersPage.class.php';
                             <input type="text" name="phone" class="form-control form-control-lg" placeholder="Enter Phone Number" required>
                         </div>
                         <div class="form-group">
-                        <select class="form-control form-control-lg" id="genderSelect">
+                        <select class="form-control form-control-lg" id="gender">
                             <option selected>Choose...</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -133,7 +133,7 @@ require_once '../controllers/customersPage.class.php';
                             <input type="text" name="dob" class="form-control form-control-lg" placeholder="Enter Date of Birth" required>
                         </div>
                         <div class="form-group">
-                            <input type="button" name="addCustomer" id="addCustomer" value="Add Customer" class="btn btn-primary btn-block btn-lg">
+                            <input type="button" name="addCustomer" id="addCustomer" value="Add Customer" class="btn btn-primary btn-block btn-lg" onClick="customers.addCustomer();">
                         </div>
                     </form>
                 </div>

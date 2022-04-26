@@ -41,4 +41,20 @@ class Customers {
         return $row;
     }
 
+    public function add_new_customer($fName, $lName, $email, $phone, $gender, $dob) {
+        $sql = "
+            insert into customers (first_name, last_name, email, phone, gender, dob) values (:first_name, :last_name, :email, :phone, :gender, :dob)
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'first_name'=>$fName,
+            'last_name'=>$lName,
+            'email'=>$email,
+            'phone'=>$phone,
+            'gender'=>$gender,
+            'dob'=>$dob
+        ]);
+        return true;
+    }
+
 }
