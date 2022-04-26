@@ -14,7 +14,7 @@ require_once '../controllers/homePage.class.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeFarm Insurance Employee Home</title>
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="../public/homeStyle.css">
      <!-- Latest compiled and minified CSS | BS4 -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- Datatables -->
@@ -49,7 +49,32 @@ require_once '../controllers/homePage.class.php';
 
     <?php require '../public/header.php' ?>
 
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-3">
+                <img src="../public/SFlogo.png" class="img-fluid rounded mx-auto d-block" alt="Responsive Image" style="height: 250px; width: 250px;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                <h1 class="text-center"><b>Welcome to SafeFarm Insurance</b></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-center"><b>Customer Portal</b></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                <br />
+                <br />
+                <h3 class="text-center"><i>Click any of the options above to get started!</i></h3>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>

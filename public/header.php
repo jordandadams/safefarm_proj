@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                    <i class="fas fa-user-cog"></i>&nbsp;Hi! <?= $currentFirstName; $currentLastName; ?>
+                    <i class="fas fa-user-cog"></i>&nbsp;Hi! <?= $currentFirstName; ?>
                 </a>
                 <div class="dropdown-menu">
                     <a href="../views/login.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
