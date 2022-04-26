@@ -2,16 +2,22 @@
 class Login {
 
     //Login Ajax Request
-    userLogin() {
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var request = {
-            request: 'get_login'
-        }
+    login() {
+        if ($('#login-form')[0].checkValidity()) {
 
-        if ($.trim(email).length > 0 && $.trim(password).length > 0) {
+            $('#login-btn').val('Please Wait...');
             $.ajax({
-                url:
+                url: '../controllers/loginPage.class.php',
+                method: 'POST',
+                data: $('#login-form').serialize() + '&action=login',
+                success: function(result) {
+                    $('#login-btn').val('Sign In');
+                    if (result === 'login') {
+                        window.location = 'home.php';
+                    } else {
+                        $('#loginAlert').html(result);
+                    }
+                }
             })
         }
     }

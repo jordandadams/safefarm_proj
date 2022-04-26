@@ -28,38 +28,18 @@
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Include JS File -->
-    <!-- <script src="../js/homeUsers.class.js?v<?php  // echo filemtime('../js/homeUsers.class.js'); ?>"></script> -->
+    <script src="../js/login.class.js?v<?php  echo filemtime('../js/login.class.js'); ?>"></script>
     <script type="text/javascript">
 
-        /*$( window ).on( "load", function() {
-            $("login-box").show();
-            $("#register-box").hide();
-            });*/
+        const login = new Login();
 
         $(document).ready(function(){
-
-            /*$("#register-btn").click(function(){
-                $("#login-box").hide();
-                $("#register-box").show();
-            });
-
-            $("#haveacc-link").click(function(){
-                $("#login-box").show();
-                $("#register-box").hide();
-            });
-
-            $("#remember-link").click(function(){
-                $("#login-box").show();
-                $("#register-box").hide();
-            });*/
 
             $("#register-btn").click(function(){
                 window.location.href='register.php';
             });
 
         });
-
-        const login = new Login();
 
     </script>
 
@@ -76,6 +56,7 @@
                         <h1 class="text-center font-weight-bold text-dark">Sign In Your Account</h1>
                         <hr class="my-3">
                         <form action="#" method="post" class="px-3" id="login-form">
+                            <div id="loginAlert"></div>
                             <!-- Email Input -->
                             <div class="input-group input-group-lg form-group">
                                 <div class="input-group-prepend">
@@ -96,7 +77,7 @@
                             </div>
                             <div class="form-group col text-center">
                                 <!-- Buttons -->
-                                <input type="submit" value="Sign In" id="login-btn" class="btn btn-primary">
+                                <input type="button" value="Sign In" id="login-btn" class="btn btn-primary" onClick="login.login();">
                                 <input type="submit" value="Register" id="register-btn" class="btn btn-primary">
                             </div>
                         </form>
