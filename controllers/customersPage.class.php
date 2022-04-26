@@ -41,6 +41,7 @@ require_once '../classes/customers.class.php';
                     <th>#</th>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>E-Mail</th>
                     <th>Phone</th>
                     <th>Date of Birth</th>
                     <th>Created</th>
@@ -59,6 +60,7 @@ require_once '../classes/customers.class.php';
                     <td>'.$row['email'].'</td>
                     <td>'.$row['phone'].'</td>
                     <td>'.$row['dob'].'</td>
+                    <td>'.$row['created_at'].'</td>
                     <td>
                         <a href="#" title="Edit Customer" id="'.$row['id'].'" class="text-priamry editBtn">
                             <i class="fas fa-edit fa-lg" data-toggle="modal" data-target="#editCustomerModal"></i>
