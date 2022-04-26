@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeFarm Insurance Employee Login</title>
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="../public/homeStyle.css">
      <!-- Latest compiled and minified CSS | BS4 -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- Datatables -->
