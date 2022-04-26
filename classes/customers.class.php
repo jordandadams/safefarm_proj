@@ -99,4 +99,15 @@ class Customers {
         return true;
     }
 
+    public function delete_customer($id) {
+        $sql = "
+            delete from customers where id = :id
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'id'=>$id
+        ]);
+        return true;
+    }
+
 }

@@ -172,7 +172,42 @@ require_once '../controllers/customersPage.class.php';
                         $("#dob").val(data.dob);
                     }
                 });
-            });
+        });
+
+        $("body").on("click", ".deleteBtn", function(e) {
+            e.preventDefault();
+            del_id = $(this).attr('id');
+
+            Swal.fire({
+                title: 'Are you sure you want to delete the customer?',
+                text: 'You will not be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '../controllers/customersPage.class.php',
+                        method: 'POST',
+                        data: {
+                            del_id: del_id
+                        },
+                        success: function(result) {
+                            Swal.fire(
+                                'Deleted',
+                                'The customer has been successfully deleted!',
+                                'success'
+                            ).then(function(){
+                                location.reload();
+                            }) 
+                        }
+                    })
+                }
+            })
+        });
+
     </script>
 </body>
 </html>

@@ -96,4 +96,10 @@ require_once '../classes/customers.class.php';
         $customersModel->update_customers($id, $fName, $lName, $email, $phone, $dob);
     }
 
+    if (isset($_POST['del_id'])) {
+        $id = $_POST['del_id'];
+
+        $customersModel->delete_customer($id);
+    }
+
 ?>
