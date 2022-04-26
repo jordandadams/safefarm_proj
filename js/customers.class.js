@@ -47,7 +47,12 @@ class Customers {
                 method: 'POST',
                 data: $('#edit-customer-form').serialize() + "&action=update_customers",
                 success: function(result) {
-                    console.log(result);
+                    Swal.fire({
+                        title: 'Customer Infomation updated successfully!',
+                        icon: 'success'
+                    }).then(function() {
+                        location.reload();
+                    });
                 }
             })
         }
