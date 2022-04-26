@@ -34,9 +34,10 @@ require_once '../controllers/customersPage.class.php';
         //insert js class
         const customers = new Customers();
 
+        customers.displayAllCustomers();
+
         //jQuery stuff
         $(document).ready(function(){
-
 
         });
 
@@ -62,38 +63,7 @@ require_once '../controllers/customersPage.class.php';
             </h5>
             <div class="card-body">
                 <div class="table-responsive" id="showCustomers">
-                    <table class="table table-striped text-center">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Phone</th>
-                                <th>Gender</th>
-                                <th>Date of Birth</th>
-                                <th>Created</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <td>1</td>
-                            <td>Jordan</td>
-                            <td>Adams</td>
-                            <td>6156300880</td>
-                            <td>Male</td>
-                            <td>02-23-2000</td>
-                            <td>2022-04-25 20:55:20</td>
-                            <td>
-                                <a href="#" title="Edit Customer" class="text-priamry editBtn">
-                                    <i class="fas fa-edit fa-lg" data-toggle="modal" data-target="#editCustomerModal"></i>
-                                </a>&nbsp;
-
-                                <a href="#" title="Delete Customer" class="text-danger deleteBtn">
-                                    <i class="fas fa-trash-alt fa-lg"></i>
-                                </a>&nbsp;
-                            </td>
-                        </tbody>
-                    </table>
+                        
                 </div>
             </div>
         </div>
@@ -122,14 +92,6 @@ require_once '../controllers/customersPage.class.php';
                             <input type="text" name="phone" class="form-control form-control-lg" placeholder="Enter Phone Number" required>
                         </div>
                         <div class="form-group">
-                        <select class="form-control form-control-lg" id="gender">
-                            <option selected>Choose...</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
                             <input type="text" name="dob" class="form-control form-control-lg" placeholder="Enter Date of Birth" required>
                         </div>
                         <div class="form-group">
@@ -151,13 +113,13 @@ require_once '../controllers/customersPage.class.php';
                     <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" id="add-customer-form" class="px-3">
+                    <form action="#" method="post" id="edit-customer-form" class="px-3">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                            <input type="text" name="fName" id="fname" class="form-control form-control-lg" placeholder="Enter First Name" required>
+                            <input type="text" name="fName" id="fName" class="form-control form-control-lg" placeholder="Enter First Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="lName" id="lname" class="form-control form-control-lg" placeholder="Enter Last Name" required>
+                            <input type="text" name="lName" id="lName" class="form-control form-control-lg" placeholder="Enter Last Name" required>
                         </div>
                         <div class="form-group">
                             <input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="Enter E-Mail" required>
@@ -166,18 +128,10 @@ require_once '../controllers/customersPage.class.php';
                             <input type="text" name="phone" id="phone" class="form-control form-control-lg" placeholder="Enter Phone Number" required>
                         </div>
                         <div class="form-group">
-                        <select class="form-control form-control-lg" name="genderSelect" id="genderSelect">
-                            <option selected>Choose...</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
                             <input type="text" name="dob" id="dob" class="form-control form-control-lg" placeholder="Enter Date of Birth" required>
                         </div>
                         <div class="form-group">
-                            <input type="button" name="editCustomer" id="editCustomer" value="Update Customer" class="btn btn-primary btn-block btn-lg">
+                            <input type="button" name="editCustomer" id="editCustomer" value="Update Customer" class="btn btn-primary btn-block btn-lg" onCLick="customers.editCustomers();">
                         </div>
                     </form>
                 </div>
@@ -186,14 +140,39 @@ require_once '../controllers/customersPage.class.php';
     </div>
     <!-- Edit Customer Modal -->
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
     <!-- Datatables -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("table").DataTable();
+
+            
         });
+
+        $("body").on("click", ".editBtn", function(e) {
+                e.preventDefault();
+
+                edit_id = $(this).attr('id');
+                
+                $.ajax({
+                    url: '../controllers/customersPage.class.php',
+                    method: 'POST',
+                    data: {
+                        edit_id: edit_id
+                    },
+                    success: function(result) {
+                        console.log(result);
+                        data = JSON.parse(result);
+                        $("#id").val(data.id);
+                        $("#fName").val(data.first_name);
+                        $("#lName").val(data.last_name);
+                        $("#email").val(data.email);
+                        $("#phone").val(data.phone);
+                        $("#dob").val(data.dob);
+                    }
+                });
+            });
     </script>
 </body>
 </html>

@@ -41,9 +41,51 @@ class Customers {
         return $row;
     }
 
-    public function add_new_customer($fName, $lName, $email, $phone, $gender, $dob) {
+    public function add_new_customer($uid, $fName, $lName, $email, $phone, $dob) {
         $sql = "
-            insert into customers (first_name, last_name, email, phone, gender, dob) values (:first_name, :last_name, :email, :phone, :gender, :dob)
+            insert into customers (uid, first_name, last_name, email, phone, dob) values (:uid, :first_name, :last_name, :email, :phone, :dob)
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'uid'=>$uid,
+            'first_name'=>$fName,
+            'last_name'=>$lName,
+            'email'=>$email,
+            'phone'=>$phone,
+            'dob'=>$dob
+        ]);
+        return true;
+    }
+
+    public function get_customers($uid) {
+        $sql = "
+            select * from customers where uid = :uid
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'uid'=>$uid
+        ]);
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function edit_customers($id) {
+        $sql = "
+            select * from customers where id = :id;
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'id'=>$id
+        ]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function update_customers($id, $fName, $lName, $email, $phone, $dob) {
+        $sql = "
+            update customers set first_name = :first_name, last_name = :last_name, email = :email, phone = :phone, dob = :dob where id = :id;
         ";
         $stmt = $this->dbObject->conn->prepare($sql);
         $stmt->execute([
@@ -51,8 +93,8 @@ class Customers {
             'last_name'=>$lName,
             'email'=>$email,
             'phone'=>$phone,
-            'gender'=>$gender,
-            'dob'=>$dob
+            'dob'=>$dob,
+            'id'=>$id
         ]);
         return true;
     }
