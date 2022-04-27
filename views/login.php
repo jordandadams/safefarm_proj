@@ -1,6 +1,7 @@
 <?php
 
 //include '../views/register.php';
+require_once '../controllers/loginPage.class.php';
 
 ?>
 
@@ -92,6 +93,5 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-    <script type="text/javascript">
 </body>
 </html>
