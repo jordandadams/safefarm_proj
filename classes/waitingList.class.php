@@ -41,4 +41,30 @@ class WaitingList {
         return $row;
     }
 
+    public function add_new_customer($uid, $name, $notes) {
+        $sql = "
+            insert into waiting_list (uid, name, notes) values (:uid, :name, :notes)
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'uid'=>$uid,
+            'name'=>$name,
+            'notes'=>$notes
+        ]);
+        return true;
+    }
+
+    public function get_customers($uid) {
+        $sql = "
+            select * from waiting_list where uid = :uid
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'uid'=>$uid
+        ]);
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
 }
