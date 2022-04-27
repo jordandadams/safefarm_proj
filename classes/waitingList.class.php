@@ -67,4 +67,15 @@ class WaitingList {
         return $result;
     }
 
+    public function delete_customer($id) {
+        $sql = "
+            delete from waiting_list where id = :id
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'id'=>$id
+        ]);
+        return true;
+    }
+
 }

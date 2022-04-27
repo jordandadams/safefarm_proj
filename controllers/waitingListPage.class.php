@@ -68,4 +68,10 @@ $created = $data['created_at'];
         }
     }
 
+    if (isset($_POST['del_id'])) {
+        $id = $_POST['del_id'];
+
+        $waitingListModel->delete_customer($id);
+    }
+
 ?>
