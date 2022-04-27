@@ -34,7 +34,9 @@ require_once '../controllers/reportsPage.class.php';
     <script type="text/javascript">
 
         //insert js class
-        const reports = new Reports();
+        const reportsjs = new Reports();
+
+        reportsjs.displayAllCustomers();
 
         //jQuery stuff
         $(document).ready(function(){
@@ -49,9 +51,94 @@ require_once '../controllers/reportsPage.class.php';
 
     <?php require '../public/header.php' ?>
 
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="text-center text-primary mt-2"><b>SafeFarm Daily Reporting</b></h4>
+            </div>
+        </div>
+        <div class="card border-primary">
+            <h5 class="card-header bg-primary d-flex justify-content-between">
+                <span class="text-light lead align-self-center">Current Reports</span>
+                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addCustomerModal">
+                    <i class="fas fa-plus-circle fa-lg"></i>&nbsp;Add New Report
+                </a>
+            </h5>
+            <div class="card-body">
+                <div class="table-responsive" id="showCustomers">
+                        
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Add New Customer Modal -->
+    <div class="modal fade" id="addCustomerModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title text-light">Add New Report</h4>
+                    <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" id="add-customer-form" class="px-3">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter Name" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" name="report" class="form-control form-control-lg" placeholder="Enter Report Notes..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="button" name="addCustomer" id="addCustomer" value="Add Report" class="btn btn-primary btn-block btn-lg" onClick="reportsjs.addCustomer();">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End New Customer Modal -->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("table").DataTable();
+
+            
+        });
+
+        $("body").on("click", ".deleteBtn", function(e) {
+            e.preventDefault();
+            del_id = $(this).attr('id');
+
+            Swal.fire({
+                title: 'Are you sure you want to delete this report?',
+                text: 'Did the Regional Manager Approve this?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '../controllers/reportsPage.class.php',
+                        method: 'POST',
+                        data: {
+                            del_id: del_id
+                        },
+                        success: function(result) {
+                            Swal.fire(
+                                'Deleted',
+                                'The report has been successfully been removed!',
+                                'success'
+                            ).then(function(){
+                                location.reload();
+                            }) 
+                        }
+                    })
+                }
+            })
+        });
+    </script>
 </body>
 </html>

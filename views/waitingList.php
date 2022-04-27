@@ -87,7 +87,7 @@ require_once '../controllers/waitingListPage.class.php';
                             <textarea type="text" name="notes" class="form-control form-control-lg" placeholder="Enter Notes..." required></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="button" name="addCustomer" id="addCustomer" value="Add Customer" class="btn btn-primary btn-block btn-lg" onClick="waitingList.addCustomer();">
+                            <input type="button" name="addCustomer" id="addCustomer" value="Add to List" class="btn btn-primary btn-block btn-lg" onClick="waitingList.addCustomer();">
                         </div>
                     </form>
                 </div>

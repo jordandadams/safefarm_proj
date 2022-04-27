@@ -41,4 +41,41 @@ class Reports {
         return $row;
     }
 
+    public function add_new_customer($uid, $name, $report) {
+        $sql = "
+            insert into reports (uid, name, report) values (:uid, :name, :report)
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'uid'=>$uid,
+            'name'=>$name,
+            'report'=>$report
+        ]);
+        return true;
+    }
+
+    public function get_customers($uid) {
+        $sql = "
+            select * from reports where uid = :uid
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'uid'=>$uid
+        ]);
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function delete_customer($id) {
+        $sql = "
+            delete from reports where id = :id
+        ";
+        $stmt = $this->dbObject->conn->prepare($sql);
+        $stmt->execute([
+            'id'=>$id
+        ]);
+        return true;
+    }
+
 }
